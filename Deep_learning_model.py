@@ -67,6 +67,7 @@ n_inputs = 20531
 n_outputs = 5
 model = get_model(n_inputs, n_outputs)
 model.fit(data,labels, verbose = 1, epochs = 1000)
+# predict de eerste sample
 row = data.iloc[0:1,:]
 yhat = model.predict(row)
 print('Predicted: %s' % yhat[0])
