@@ -37,6 +37,7 @@ def get_model(n_inputs, n_outputs):
 	return model
 
 # evaluate a model using repeated k-fold cross-validation
+# werkt nog niet, wss kan pandas niet gebruikt worden voor input van RepeatedKfold??
 def evaluate_model(X, y):
 	results = list()
 	n_inputs, n_outputs = X.shape[1], y.shape[1]
@@ -62,13 +63,16 @@ def evaluate_model(X, y):
 		results.append(acc)
 	return results
 
-#n_inputs = 20531
-#n_outputs = 5
-#model = get_model(n_inputs, n_outputs)
-#model.fit(data,labels, verbose = 1, epochs = 100)
+n_inputs = 20531
+n_outputs = 5
+model = get_model(n_inputs, n_outputs)
+model.fit(data,labels, verbose = 1, epochs = 1000)
+row = data.iloc[0:1,:]
+yhat = model.predict(row)
+print('Predicted: %s' % yhat[0])
 
 # als evaluate model werkt
-results = evaluate_model(data, labels)
-print("Accuracy: %.3f (%.3f)" % (mean(results), std(results)))
+#results = evaluate_model(data, labels)
+##p#rint("Accuracy: %.3f (%.3f)" % (mean(results), std(results)))
 
 
